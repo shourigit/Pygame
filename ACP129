@@ -1,0 +1,40 @@
+import pygame
+pygame.init()
+
+screen = pygame.display.set_mode((500, 400))
+pygame.display.set_caption("Add Sprites")
+
+white = (255, 255, 255)
+blue = (0, 0, 255)
+red = (255, 0, 0)
+
+x1, y1 = 100, 100
+x2, y2 = 300, 200
+width, height = 40, 40
+speed = 5
+
+clock = pygame.time.Clock()
+run = True
+
+while run:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x1 -= speed
+            if event.key == pygame.K_RIGHT:
+                x1 += speed
+            if event.key == pygame.K_UP:
+                y1 -= speed
+            if event.key == pygame.K_DOWN:
+                y1 += speed
+
+    screen.fill(white)
+    pygame.draw.rect(screen, blue, (x1, y1, width, height))
+    pygame.draw.rect(screen, red, (x2, y2, width, height))
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
