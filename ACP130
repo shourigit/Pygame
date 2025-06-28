@@ -1,0 +1,35 @@
+import pygame
+import random
+
+pygame.init()
+screen = pygame.display.set_mode((500, 400))
+pygame.display.set_caption("lesson 37")
+
+event = pygame.USEREVENT + 1
+pygame.time.set_timer(event, 1000)
+
+colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
+
+block1 = pygame.Surface((50, 50))
+block2 = pygame.Surface((50, 50))
+block1.fill(random.choice(colors))
+block2.fill(random.choice(colors))
+
+rect1 = block1.get_rect(topleft=(100, 100))
+rect2 = block2.get_rect(topleft=(300, 100))
+
+run = True
+while run:
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            run = False
+        if e.type == event:
+            block1.fill(random.choice(colors))
+            block2.fill(random.choice(colors))
+
+    screen.fill((255, 255, 255))
+    screen.blit(block1, rect1)
+    screen.blit(block2, rect2)
+    pygame.display.update()
+
+pygame.quit()
